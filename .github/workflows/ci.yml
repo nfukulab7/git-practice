@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  repository-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Compile Python sources when present
+        shell: bash
+        run: |
+          if find . -type f -name '*.py' -not -path './.git/*' -print -quit | grep -q .; then
+            python -m compileall .
+          else
+            echo "No Python files found; compile check skipped."
+          fi
+
+      - name: Run pytest when a test suite is present
+        shell: bash
+        run: |
+          if [ -d tests ] && find tests -type f -name 'test_*.py' -print -quit | grep -q .; then
+            python -m pip install --disable-pip-version-check pytest
+            python -m pytest
+          else
+            echo "No Python test suite found; pytest skipped."
+          fi
+
+      - name: Check required workflow files
+        shell: bash
+        run: |
+          test -f AGENTS.md
+          test -f .github/PULL_REQUEST_TEMPLATE.md
+          test -f .github/CODEOWNERS

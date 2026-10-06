@@ -1,0 +1,46 @@
+name: Development task
+description: Define a focused implementation task for a human or Codex.
+title: "[Task]: "
+labels:
+  - task
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What problem should be solved, and why now?
+    validations:
+      required: true
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Requirements
+      description: Describe the behavior that should change and what must remain unchanged.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List observable outcomes using checkboxes.
+      placeholder: |
+        - [ ] Expected output is produced
+        - [ ] Existing behavior remains compatible
+        - [ ] Tests pass
+    validations:
+      required: true
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Expected risk
+      options:
+        - Low
+        - Medium
+        - High
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints and review focus
+      description: Note protected files, domain assumptions, or decisions requiring human judgment.
