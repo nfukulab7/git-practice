@@ -21,4 +21,6 @@ Repository-specific instructions for Codex and other AI agents are in [AGENTS.md
 - Codex for implementation and review
 - Python 3.13 for local scripts and tests
 
-Google Colab/GPU integration is intentionally deferred until the local workflow is verified.
+## Google Colab and GPU
+
+Use Colab only for workloads that benefit from remote acceleration. Start with the environment smoke test in [`notebooks/colab_gpu_check.ipynb`](notebooks/colab_gpu_check.ipynb) and follow [`docs/colab.md`](docs/colab.md). Authentication remains a human-controlled step, and large data or generated outputs must not be committed.

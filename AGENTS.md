@@ -39,6 +39,8 @@ This repository is a workflow practice repository. Until project-specific checks
 - Run `python -m compileall .` when Python files are present.
 - Run `python -m pytest` when a Python test suite is present.
 - Ensure GitHub Actions passes before requesting human merge approval.
+- Keep lightweight tests local and in CI; use Colab only for GPU validation or workloads that need remote acceleration.
+- When Colab is used, record the Git commit, environment, accelerator, configuration, and result location.
 
 ## Pull Request expectations
 
